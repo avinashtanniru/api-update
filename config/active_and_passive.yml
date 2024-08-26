@@ -1,0 +1,200 @@
+active_and_passive_state:
+  certinfoprocessor:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  corepy3:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  kafkaconsumerpy3:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  kafkaconsumersyncpy3:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  openwebconfig:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  oswebconfig:
+    canary:
+      AP: passive
+      EU: active
+      US: passive
+    prod:
+      AP: active
+      EU: passive
+      US: active
+  ssrgo:
+    canary:
+      AP: active
+      EU: active
+      US: passive
+    prod:
+      AP: passive
+      EU: passive
+      US: active
+  syncpy3:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  webconfig:
+    canary:
+      AP: passive
+      EU: active
+      US: passive
+    prod:
+      AP: active
+      EU: passive
+      US: active
+  webconfigadmin:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  xapcpestatus:
+    canary:
+      AP: active
+      EU: passive
+      US: passive
+    prod:
+      AP: passive
+      EU: active
+      US: active
+  xapcujo:
+    canary:
+      AP: passive
+      EU: passive
+      US: active
+    prod:
+      AP: active
+      EU: active
+      US: passive
+  xapfindfairy:
+    canary:
+      AP: passive
+      EU: active
+      US: active
+    prod:
+      AP: active
+      EU: passive
+      US: passive
+  xapgwstatus:
+    canary:
+      AP: active
+      EU: active
+      US: active
+    prod:
+      AP: passive
+      EU: passive
+      US: passive
+  xapproxy:
+    canary:
+      AP: active
+      EU: passive
+      US: active
+    prod:
+      AP: passive
+      EU: active
+      US: passive
+  xapproxysync:
+    canary:
+      AP: active
+      EU: passive
+      US: active
+    prod:
+      AP: passive
+      EU: active
+      US: passive
+  xapv2:
+    canary:
+      AP: passive
+      EU: active
+      US: passive
+    prod:
+      AP: active
+      EU: passive
+      US: active
+  xconfadminui:
+    canary:
+      AP: passive
+      EU: passive
+      US: passive
+    prod:
+      AP: active
+      EU: active
+      US: active
+  xconfruleprocessor:
+    canary:
+      AP: passive
+      EU: passive
+      US: active
+    prod:
+      AP: active
+      EU: active
+      US: passive
+  xcrp:
+    canary:
+      AP: active
+      EU: active
+      US: passive
+    prod:
+      AP: passive
+      EU: passive
+      US: active
+active_passive: null
+canary:
+  default: ''
+  green: '{{active_and_passive_state[site_role_name][''canary''][site_country]}}'
+canaryweight:
+  default: 0
+  green: '{{''0'' if prod[site_country] == ''active'' else ''100'' if canary[site_country]
+    == ''active''}}'
+deployname:
+  default: prod
+  green: '{{''prod'' if prod[site_country] == ''passive'' else ''canary'' if canary[site_country]
+    == ''passive'' else ''prod'' }}'
+prod:
+  default: ''
+  green: '{{active_and_passive_state[site_role_name][''prod''][site_country]}}'
+prodweight:
+  default: 100
+  green: '{{''0'' if canary[site_country] == ''active'' else ''100'' if prod[site_country]
+    == ''active''}}'
