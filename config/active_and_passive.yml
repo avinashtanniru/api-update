@@ -1,7 +1,7 @@
 active_and_passive_state:
   certinfoprocessor:
     canary:
-      AP: passive
+      AP: active
       EU: passive
       US: passive
     prod:
